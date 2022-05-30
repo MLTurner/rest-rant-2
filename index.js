@@ -5,12 +5,16 @@ const app = express ()
 //connecting to .env file
 require('dotenv').config()
 
+//Defining view engine, jsx, that we are using
+app.set('view engine', 'jsx')
+app.engine('jsx', require('express-react-views').createEngine())
+
 //Middleware
 app.use('/places', require('./controllers/places'))
 
 //GET homepage route
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.render('home')
 })
 
 //GET 404 page route
