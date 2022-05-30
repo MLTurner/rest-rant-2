@@ -18,9 +18,10 @@ app.get('/', (req, res) => {
 })
 
 //GET 404 page route
-//404 status code is from express
+//changed from 404 status code from express
+//to res.render our views/error404
 app.get('*', (req, res) => {
-    res.status(404).send('<h1>404 Page</h1>')
+    res.render('error404')
 })
 
 //telling our app to listen to our encrypted port
