@@ -5,6 +5,9 @@ const app = express ()
 //connecting to .env file
 require('dotenv').config()
 
+//Middleware
+app.use('/places', require('./controllers/places'))
+
 //GET homepage route
 app.get('/', (req, res) => {
     res.send('Hello World!')
