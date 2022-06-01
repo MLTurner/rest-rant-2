@@ -1,14 +1,18 @@
+//connecting to .env file
+require('dotenv').config()
+
 //requiring express
 const express = require('express')
 //initializing app variable
 const app = express ()
-//connecting to .env file
-require('dotenv').config()
 
 //Defining view engine, jsx, that we are using
+//Assigning a property
+//app.set('views',__dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 
+app.use(express.static('public'))
 //Middleware
 app.use('/places', require('./controllers/places'))
 
