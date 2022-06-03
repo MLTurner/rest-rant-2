@@ -20,6 +20,9 @@ app.use('/places', require('./controllers/places'))
 
 
 //GET homepage route
+//'home' is the name of the view we just created -> home.jsx , aka the file name
+//Note: You don't have to specify the 'views' folder. 
+//It already knows to look for a 'views' folder when you call the render method!
 app.get('/', (req, res) => {
     res.render('home')
 })

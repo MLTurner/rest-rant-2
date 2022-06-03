@@ -1,28 +1,26 @@
 //creating a variable that creates a new router object
 //this object will handle client requests
 const router = require('express').Router()
-
-
-router.get('/', (req, res) => {
-    let places = [{
-        name: 'Budacai',
-        city: 'Raleigh',
-        state: 'NC',
-        cuisines: 'Thai, Pan-Asian',
-        pic: '/images/kimchi-budacai.jpg'
-    }, {
-        name: 'La Santa',
-        city: 'Raleigh',
-        state: 'NC',
-        cuisines: 'Mexican',
-        pic: '/images/la-santa.jpg'
-    }]
-    res.render('places/index', { places })
-})
+const places = require('../models/places.js')
 
 router.post('/', (req, res) => {
-    console.log(req.body)
-    res.send('POST /places')
+    if (!req.body.pic) {
+        //Default image if one is not provided
+        req.body.pic = 'http://placekitten.com/400/400'
+    }
+    if (!req.body.city) {
+        req.body.city = 'Anytown'
+    }
+    if (!req.body.state){
+        req.body.state = 'USA'
+    }
+    places.push(req.body)
+    res.redirect('/places')
+})
+
+
+router.get('/', (req, res) =>{
+    res.render('places/index', { places })
 })
 
 //Route for new place
@@ -30,6 +28,11 @@ router.get('/new', (req, res) => {
     res.render('places/new')
 })
 
+router.post('/', (req, res) => {
+    console.log(req.body)
+    res.send('POST /places stub')
+  })
+  
 router.get('/:id', (req, res) => {
     res.send('GET /places/:id stub')
 })
