@@ -1,9 +1,103 @@
+nav {
+  background-color: cornflowerblue;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+nav li {
+  display: inline;
+  margin-right: 25px;
+}
+
+nav a {
+  color: white;
+  font-size: 1.5em;
+}
+
+nav a:hover {
+  color: pink;
+  text-decoration: none;
+}
+
 h1 {
     text-align: center;
     color: cornflowerblue;
   }
 
-  img {
-      width: 540px;
-      height: auto;
+img {
+    width: 540px;
+    height: auto;
   }
+
+html, body {
+    height: 100%;
+  }
+
+body {
+    display: flex;
+    flex-direction: column;
+  }
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+body {
+  background-color: lightblue;
+  text-align: center;
+}
+
+main {
+  margin-right: 20px;
+  margin-left: 20px;
+  background-color: white;
+}
+
+
+/* Style the Sticky icons on web page */   
+.stickyicon-list {   
+    position: fixed;   
+    top: 200px;   
+    transform: translateY(-50%);             
+}     
+
+.stickyicon-list a {   
+    display: block;   
+    text-align: center;   
+    padding: 8px;   
+    transition: all 0.5s ease;   
+    color: white;   
+    font-size: 20px;   
+}   
+
+/* Hover affect on sticky social media icons */   
+.stickyicon-list a:hover {   
+    color: #000;   
+    width:10px;   
+}   
+
+.fa {  
+    padding: 20px;  
+    text-align: center;  
+    margin: 5px 2px;  
+    font-size: 30px;  
+    width: 50px;  
+  }  
+
+.fa-linkedin {  
+    background: #007bb5;  
+    color: white;  
+}  
+
+.fa-github {
+    background: black;
+    color: white;
+}
