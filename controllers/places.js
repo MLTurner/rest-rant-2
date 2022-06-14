@@ -44,7 +44,7 @@ router.get('/:id', (req, res) => {
     }
 
     else {
-    res.render('places/show', { place: places[id] })
+    res.render('places/show', { place: places[id], id })
     }
 })
 

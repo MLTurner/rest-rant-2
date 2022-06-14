@@ -6,6 +6,9 @@ const express = require('express')
 //initializing app variable
 const app = express ()
 
+//requiring method-override
+const methodOverride = require('method-override')
+
 //Defining view engine, jsx, that we are using
 //Assigning a property
 //app.set('views',__dirname + '/views')
@@ -15,6 +18,10 @@ app.engine('jsx', require('express-react-views').createEngine())
 app.use(express.static('public'))
 //Tool to decrypt certain data when it is received
 app.use(express.urlencoded({ extended: true }))
+
+//specifies "_method" as the keyword to change methods when we need to
+app.use(methodOverride('_method'))
+
 //Middleware
 app.use('/places', require('./controllers/places'))
 
