@@ -19,19 +19,6 @@ router.post('/', (req, res) => {
 })
 
 
-
-// DELETE /places/:id
-/*router.delete("/:id", (req, res) => {
-    let id = Number(req.params.id)
-      .then((place) => {
-        res.redirect("/places");
-      })
-      .catch((err) => {
-        console.log("err", err);
-        res.render("error404");
-      });
-  });*/
-
 router.get('/', (req, res) =>{
     res.render('places/index', { places })
 })
@@ -47,7 +34,7 @@ router.post('/', (req, res) => {
     res.send('POST /places stub')
   })
 
-  
+//show a place
 router.get('/:id', (req, res) => {
     let id = Number(req.params.id)
     if (isNaN(id)) {
@@ -77,15 +64,27 @@ router.delete('/places/:id', (req, res) => {
         res.render('error404')
     }
     else {
-        places.splice(id, 1)
+        places.splice([id], 1)
         res.redirect('/places')
     }
 })
 
-
+//edit a place
 router.get('/:id/edit', (req, res) => {
-    res.send('GET /places/:id/edit stub')
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+        res.render('error404')
+    }
+
+    else if (!places[id]){
+        res.render('error404')
+    }
+
+    else {
+    res.render('places/edit', { place: places[id] })
+    }
 })
+    
 
 router.post('/:id/rant', (req, res) => {
     res.send('GET /places/:id/rant stub')

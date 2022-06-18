@@ -29,12 +29,7 @@ function Def (html) {
             <div className='content'>
                 {html.children}
             </div>
-            <footer className='footer'>
-            <a href='#linkedin' className='fa-linkedin'></a>
-            <i className='fa fa-linkedin'></i>
-            <a href='#github' className='fa-github'></a>
-            <i className='fa-brands fa-github-alt'></i>
-            </footer>
+            
             </body>
         </html>
     )
