@@ -6,7 +6,7 @@ function show (data) {
         <Def>
             <main>
                 <h1>{ data.place.name }</h1>
-            </main>
+            
             <a href={`/places/${data.id}/edit`} className='btn btn-warning'> 
                 Edit
             </a> 
@@ -15,6 +15,7 @@ function show (data) {
                     Delete
                 </button>
             </form>
+            </main>
         </Def>
     )
 }
