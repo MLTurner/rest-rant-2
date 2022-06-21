@@ -3,6 +3,13 @@
 const router = require('express').Router()
 const places = require('../models/places.js')
 
+//get index of places
+router.get('/', (req, res) =>{
+    res.render('places/index', { places })
+})
+
+
+//post a new place
 router.post('/', (req, res) => {
     if (!req.body.pic) {
         //Default image if one is not provided
@@ -19,22 +26,12 @@ router.post('/', (req, res) => {
 })
 
 
-router.get('/', (req, res) =>{
-    res.render('places/index', { places })
-})
-
-//Route for new place
+//Route for a new place
 router.get('/new', (req, res) => {
     res.render('places/new')
 })
 
-
-router.post('/', (req, res) => {
-    console.log(req.body)
-    res.send('POST /places stub')
-  })
-
-//show a place
+//show a place (individual page with edit/ delete buttons)
 router.get('/:id', (req, res) => {
     let id = Number(req.params.id)
     if (isNaN(id)) {
@@ -50,7 +47,7 @@ router.get('/:id', (req, res) => {
     }
 })
 
-//edit a place
+//form page for editing an existing place
 router.get('/:id/edit', (req, res) => {
     let id = Number(req.params.id)
     if (isNaN(id)) {
@@ -60,10 +57,11 @@ router.get('/:id/edit', (req, res) => {
         res.render('error404')
     }
     else {
-        res.render('places/edit', { place: places[id] })
+        res.render('places/edit', { place: places[id], id })
         }
 })
- 
+
+//Route to update a particular place after entering changes
 router.put('/:id', (req, res) => {
     let id = Number(req.params.id)
     if (isNaN(id)) {
@@ -71,13 +69,23 @@ router.put('/:id', (req, res) => {
     }
     else if (!places[id]) {
         res.render('error404')
-    }
-    else {
+    } 
+    else{
+        if (!req.body.pic) {
+            req.body.pic = 'http://placekitten.com/400/400'
+        }
+        if (!req.body.city) {
+            req.body.city = 'Anytown'
+        }
+        if (!req.body.state) {
+            req.body.state = 'USA'
+        }  
+        places[id] = req.body
         res.redirect(`/places/${id}`)
     }
   })
-  
 
+  
 //Editing and putting in boilerplate info in case user does not fill out fields
 router.put('/:id/', (req, res) => {
     let id = Number(req.params.id)
@@ -103,7 +111,7 @@ router.put('/:id/', (req, res) => {
    
 })
 
-//delete a place
+  //delete a place
 router.delete('/:id', (req, res) => {
     let id = Number(req.params.id)
     if (isNaN(id)) {
@@ -117,6 +125,13 @@ router.delete('/:id', (req, res) => {
         res.redirect('/places')
     }
 })
+
+/*router.post('/', (req, res) => {
+    console.log(req.body)
+    res.send('POST /places stub')
+  })*/
+
+
 
 
 
