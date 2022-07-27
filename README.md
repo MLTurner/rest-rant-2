@@ -23,3 +23,10 @@ TBD
 | POST   | `/places/:id/rant`         | Create a rant (comment) about a particluar place |
 | DELETE | `/places/:id/rant/:rantid` | Delete a rant (comment) about a particular place |
 | GET    | `*`                        | 404 page (matches any route not defined above)   |
+
+
+tag (enum)
+green (string)
+(object)
+tag_id: 1
+label: green
